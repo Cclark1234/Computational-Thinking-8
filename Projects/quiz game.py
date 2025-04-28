@@ -27,6 +27,20 @@ elif answer == "B":
 #question 4:
 answer = input("in basketball or football would you rather A) cross somebody, or B) juke somebody?/n")
 if answer == "A":
+    basketball_points += 1
+elif answer == "B":
+    football_points += 1
+
+#question 5:
+answer = input("in basketball or football would you rather A) throw an interception, or B) throw a turnover?/n")
+if answer == "A":
     football_points += 1
 elif answer == "B":
     basketball_points += 1
+
+if basketball_points > football_points:
+    print("You are a basketball person")
+elif football_points > basketball_points:
+    print("You are a basketball person")
+elif basketball_points == football_points:
+    print("You like basketball and football the same")
