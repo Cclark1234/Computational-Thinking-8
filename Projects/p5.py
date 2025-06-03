@@ -26,7 +26,7 @@ window.tracer(0)
 
 # Section 2: Setup
 s1 = create_sprite("hoop",200,50)
-set_background("castle")
+set_background("sonicscourt")
 points = 0
 
 # Section 3: Controls
@@ -35,18 +35,46 @@ def move_up():
 	s1.forward(10)
 window.onkeypress(move_up,"Up")
 
+def move_down():
+	s1.setheading(270)
+	s1.forward(10)
+window.onkeypress(move_down,"Down")
+
+def move_left():
+	s1.setheading(180)
+	s1.forward(10)
+window.onkeypress(move_left,"Left")
+
+def move_right():
+	s1.setheading(0)
+	s1.forward(10)
+window.onkeypress(move_right,"Right")
+
 # Section 4: Game Loop
 window.listen()
 timer = 0
+obstacles = []
 while True:
 	time.sleep(0.1)
 	timer += 1  
 	 
     
  	# TODO - code for automatic actions
+	 # create basketballs
+	if timer % 20 == 0:
+		y_position = random.randint(-250,250)
+		s2 = create_sprite("basketball",y_position,310)
+		s2.setheading(270)
+		obstacles.append(s2)
 
 
-
+	# move basketballs
+	for s2 in obstacles:
+		s2.forward(10)
+		if get_distance(s1,s2) < 50:
+			points += 1
+			s2.hideturtle()
+			obstacles.remove(s2)
 
 
 
